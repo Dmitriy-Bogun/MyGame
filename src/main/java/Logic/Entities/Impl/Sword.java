@@ -17,4 +17,9 @@ public class Sword implements IWeapon {
     public String getName() {
         return "Sword";
     }
+
+    @Override
+    public int getDexterity() {
+        return 2;
+    }
 }
