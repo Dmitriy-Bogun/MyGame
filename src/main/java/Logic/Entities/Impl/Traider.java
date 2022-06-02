@@ -1,5 +1,8 @@
 package Logic.Entities.Impl;
 
+import Logic.Entities.IArmor;
+import Logic.Entities.IWeapon;
+
 public class Traider {
     public IWeapon getWeapon(Weapons type){
         switch (type){

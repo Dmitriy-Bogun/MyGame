@@ -1,42 +1,65 @@
 package Logic.Entities.Impl;
 
-public class Recruit extends Warrior{
-    private int health = 300;
-    private int dexterity = 15;
-    private int protection = 10;
+import Logic.Entities.Warrior;
 
-    public Recruit(int health, int dexterity, int protection) {
-        this.health = health;
-        this.dexterity = dexterity;
-        this.protection = protection;
+public class Recruit extends Warrior {
+    private static final int CLASS_MAX_HEALTH = 300;
+    private static final int CLASS_DEXTERITY = 10;
+    private static final int CLASS_STRENGTH = 5;
+    private static final int CLASS_PROTECTION = 10;
+    private static final int CLASS_DAMAGE = 10;
+    private int currentHealth;
+
+    public Recruit() {
+        currentHealth = maxHealth();
     }
 
     @Override
     public int attack() {
-        return 2;
+        return CLASS_DAMAGE;
     }
 
-    public int getHealth() {
-        return health;
+    @Override
+    public int protection() {
+        return CLASS_PROTECTION;
     }
 
-    public int getDexterity() {
-        return dexterity;
+    @Override
+    public double chanceOfCriticalDamage() {
+        return CLASS_DEXTERITY;
     }
 
-    public int getProtection() {
-        return protection;
+    @Override
+    public double chanceOfParrying() {
+        return CLASS_DEXTERITY/2.0;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    @Override
+    public void takingDamage(int damage) {
+
     }
 
-    public void setDexterity(int dexterity) {
-        this.dexterity = dexterity;
+    @Override
+    public int maxHealth() {
+        return CLASS_MAX_HEALTH;
     }
 
-    public void setProtection(int protection) {
-        this.protection = protection;
+    @Override
+    public int currentHealth() {
+        return currentHealth;
+    }
+
+    @Override
+    public int dexterity() {
+        return CLASS_DEXTERITY;
+    }
+
+    @Override
+    public int strength() {
+        return CLASS_STRENGTH;
+    }
+
+    public boolean isAlive(){
+        return this.currentHealth<=0;
     }
 }

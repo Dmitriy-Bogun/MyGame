@@ -8,5 +8,7 @@ public interface IArmor {
 
     int getHealth();
 
+    int getStrength();
+
     String getName();
 }

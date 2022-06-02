@@ -1,6 +1,8 @@
 package Logic.Entities.Impl;
 
-public class HardArmor implements IArmor{
+import Logic.Entities.IArmor;
+
+public class HardArmor implements IArmor {
     @Override
     public int getProtection() {
         return 80;
@@ -14,6 +16,11 @@ public class HardArmor implements IArmor{
     @Override
     public int getHealth() {
         return 300;
+    }
+
+    @Override
+    public int getStrength() {
+        return 0;
     }
 
     @Override

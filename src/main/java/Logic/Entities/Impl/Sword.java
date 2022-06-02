@@ -1,5 +1,7 @@
 package Logic.Entities.Impl;
 
+import Logic.Entities.IWeapon;
+
 public class Sword implements IWeapon {
     @Override
     public int getDamageValue() {

@@ -1,5 +1,6 @@
 package Interface;
 
+import Logic.Entities.IArmor;
 import Logic.Entities.IWeapon;
 import Logic.Entities.Impl.*;
 
@@ -16,12 +17,15 @@ public class Main {
         System.out.println("=========================");
 
         IWeapon knife1 = traider.getWeapon(Weapons.KNIFE);
+        IArmor liteArmor = traider.getArmor(Armor.LITEARMOR);
         Recruit recruit2 = new Recruit();
-        Assasin assasin1 = new Assasin(knife1,recruit2,new BackStab());
-        System.out.println(assasin1.attack());
-        assasin1.useSkill();
-        Assasin assasin2 = new Assasin(sword1,recruit1,new Inviz());
-        assasin2.useSkill();
+        IArmor mediumArmor = traider.getArmor(Armor.MEDIUMARMOR);
+        Assassin assasin1 = new Assassin(knife1,liteArmor,recruit2,new BackStab());
+        //System.out.println(assasin1.attack());
+        //assasin1.useSkill();
+        //Assassin assasin2 = new Assassin(sword1,mediumArmor,recruit1,new Inviz());
+        //assasin2.useSkill();
+        System.out.println(assasin1.dexterity());
 
 
     }

@@ -1,12 +1,11 @@
 package Logic.Entities.Impl;
 
-public class Paladin extends WarriorDecorator{
-    private int health;
-    private int dexterity;
-    private int protection;
+import Logic.Entities.*;
 
-    public Paladin(IWeapon weapon, Warrior warrior,Skill skill) {
-        super(weapon, warrior,skill);
+public class Paladin extends WarriorDecorator {
+
+    public Paladin(IWeapon weapon, IArmor armor, Warrior warrior, Skill skill) {
+        super(weapon,armor, warrior,skill);
     }
 
     @Override
@@ -17,5 +16,43 @@ public class Paladin extends WarriorDecorator{
     @Override
     public int attack() {
         return warrior.attack() + weapon.getDamageValue();
+    }
+    public int protection() {
+        return warrior.protection() + armor.getProtection() + 90;
+    }
+
+    @Override
+    public double chanceOfCriticalDamage() {
+        return 0;
+    }
+
+    @Override
+    public double chanceOfParrying() {
+        return 0;
+    }
+
+    @Override
+    public void takingDamage(int damage) {
+
+    }
+
+    @Override
+    public int maxHealth() {
+        return warrior.maxHealth() + armor.getHealth() + 500;
+    }
+
+    @Override
+    public int currentHealth() {
+        return 0;
+    }
+
+    @Override
+    public int dexterity() {
+        return warrior.dexterity() + armor.getDexterity() + 60;
+    }
+
+    @Override
+    public int strength() {
+        return 0;
     }
 }
