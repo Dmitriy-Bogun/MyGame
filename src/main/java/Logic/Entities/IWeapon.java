@@ -6,5 +6,7 @@ public interface IWeapon {
     int getCost();
 
     String getName();
+    
+    int getDexterity();
 
 }

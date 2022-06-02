@@ -17,4 +17,8 @@ public class Knife implements IWeapon {
     public String getName() {
         return "Knife";
     }
+    @Override
+    public int getDexterity() {
+        return 5;
+    }
 }
