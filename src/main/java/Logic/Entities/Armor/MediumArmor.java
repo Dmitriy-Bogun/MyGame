@@ -3,12 +3,12 @@ package Logic.Entities.Armor;
 public class MediumArmor implements IArmor {
     @Override
     public int getProtection() {
-        return 50;
+        return 25;
     }
 
     @Override
     public int getDexterity() {
-        return 50;
+        return 30;
     }
 
     @Override

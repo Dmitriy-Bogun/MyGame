@@ -5,12 +5,16 @@ import Logic.Entities.Weapon.*;
 import Logic.Entities.Armor.*;
 import Logic.Entities.Skill.*;
 
+import java.util.Random;
+
 public class Assassin extends WarriorDecorator {
 
     private int currentHealth;
+    Random random;
     public Assassin(IWeapon weapon, IArmor armor, Warrior warrior, Skill skill) {
         super(weapon, armor, warrior, skill);
         currentHealth = maxHealth();
+        random = new Random();
     }
 
     private static final int CLASS_ADDITIONAL_HEALTH = 300;
@@ -43,7 +47,7 @@ public class Assassin extends WarriorDecorator {
 
     @Override
     public int currentHealth() {
-        return 0;
+        return currentHealth;
     }
 
     @Override
@@ -56,18 +60,28 @@ public class Assassin extends WarriorDecorator {
         return warrior.strength() + armor.getStrength() + CLASS_ADDITIONAL_STRENGTH;
     }
 
-    @Override
-    public double chanceOfCriticalDamage() {
-        return 0;
-    }
 
-    @Override
-    public double chanceOfParrying() {
-        return 0;
+   private boolean chanceOfCriticalDamage() {
+        int temp = 100;
+        int chance = random.nextInt(temp);
+       return chance <= this.dexterity();
+   }
+
+    private boolean chanceOfParrying() {
+        int temp = 100;
+        int chance = random.nextInt(temp);
+        return !(chance > (double)this.dexterity() / 2.0);
     }
 
     @Override
     public void takingDamage(int damage) {
+        if (!chanceOfParrying()){
+            this.currentHealth = this.currentHealth - (damage - (damage*this.protection()/100));
+        }
+    }
 
+    @Override
+    public boolean isAlive(){
+        return currentHealth>0;
     }
 }

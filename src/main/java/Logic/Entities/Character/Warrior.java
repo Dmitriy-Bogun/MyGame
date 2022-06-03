@@ -7,11 +7,7 @@ public abstract class Warrior {
     public abstract int maxHealth();
     public abstract int currentHealth();
     public abstract int protection();
-    public abstract double chanceOfCriticalDamage();
-    public abstract double chanceOfParrying();
     public abstract void takingDamage(int damage);
-    public boolean isAlive(){
-        return maxHealth()<=0;
-    }
+    public abstract boolean isAlive();
 }
 
