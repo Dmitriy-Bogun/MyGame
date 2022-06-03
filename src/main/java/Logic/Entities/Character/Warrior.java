@@ -1,4 +1,4 @@
-package Logic.Entities;
+package Logic.Entities.Character;
 
 public abstract class Warrior {
     public abstract int attack();

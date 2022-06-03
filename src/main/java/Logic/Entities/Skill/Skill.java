@@ -1,4 +1,6 @@
-package Logic.Entities;
+package Logic.Entities.Skill;
+
+import Logic.Entities.Character.*;
 
 public abstract class Skill {
     private String name;

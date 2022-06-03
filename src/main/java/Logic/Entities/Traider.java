@@ -1,10 +1,10 @@
-package Logic.Entities.Impl;
+package Logic.Entities;
 
-import Logic.Entities.IArmor;
-import Logic.Entities.IWeapon;
+import Logic.Entities.Armor.*;
+import Logic.Entities.Weapon.*;
 
 public class Traider {
-    public IWeapon getWeapon(Weapons type){
+    public IWeapon getWeapon(WeaponType type){
         switch (type){
             case SWORD:
                 return new Sword();
@@ -14,7 +14,7 @@ public class Traider {
         }
         return null;
     }
-    public IArmor getArmor(Armor type){
+    public IArmor getArmor(ArmorType type){
         switch (type){
             case HARDARMOR:
                 return new HardArmor();

@@ -1,6 +1,9 @@
-package Logic.Entities.Impl;
+package Logic.Entities.Character.Class;
 
-import Logic.Entities.*;
+import Logic.Entities.Character.*;
+import Logic.Entities.Weapon.*;
+import Logic.Entities.Armor.*;
+import Logic.Entities.Skill.*;
 
 public class Assassin extends WarriorDecorator {
 

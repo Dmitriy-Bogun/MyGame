@@ -1,4 +1,4 @@
-package Logic.Entities;
+package Logic.Entities.Armor;
 
 public interface IArmor {
 

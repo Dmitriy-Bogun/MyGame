@@ -1,7 +1,7 @@
-package Logic.Entities.Impl;
+package Logic.Entities.Skill;
 
-import Logic.Entities.Skill;
-import Logic.Entities.WarriorDecorator;
+import Logic.Entities.Character.*;
+import Logic.Entities.Weapon.*;
 
 public class BackStab extends Skill {
 

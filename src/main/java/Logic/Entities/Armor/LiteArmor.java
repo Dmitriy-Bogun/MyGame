@@ -1,6 +1,4 @@
-package Logic.Entities.Impl;
-
-import Logic.Entities.IArmor;
+package Logic.Entities.Armor;
 
 public class LiteArmor implements IArmor {
     @Override

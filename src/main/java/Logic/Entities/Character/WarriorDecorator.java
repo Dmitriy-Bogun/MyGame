@@ -1,4 +1,8 @@
-package Logic.Entities;
+package Logic.Entities.Character;
+
+import Logic.Entities.Skill.*;
+import Logic.Entities.Armor.*;
+import Logic.Entities.Weapon.*;
 
 public abstract class WarriorDecorator extends Warrior{
 

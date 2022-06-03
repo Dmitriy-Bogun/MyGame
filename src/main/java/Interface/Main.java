@@ -1,14 +1,17 @@
 package Interface;
 
-import Logic.Entities.IArmor;
-import Logic.Entities.IWeapon;
-import Logic.Entities.Impl.*;
+import Logic.Entities.Armor.*;
+import Logic.Entities.Weapon.*;
+import Logic.Entities.Character.Class.*;
+import Logic.Entities.Character.*;
+import Logic.Entities.*;
+import Logic.Entities.Skill.*;
 
 public class Main {
     public static void main(String[] args) {
 
         Traider traider = new Traider();
-        IWeapon sword1 = traider.getWeapon(Weapons.SWORD);
+        IWeapon sword1 = traider.getWeapon(WeaponType.SWORD);
         Recruit recruit1 = new Recruit();
         //System.out.println(recruit1.attack());
         //Paladin paladin = new Paladin(sword1,recruit1);
@@ -16,10 +19,10 @@ public class Main {
 
         System.out.println("=========================");
 
-        IWeapon knife1 = traider.getWeapon(Weapons.KNIFE);
-        IArmor liteArmor = traider.getArmor(Armor.LITEARMOR);
+        IWeapon knife1 = traider.getWeapon(WeaponType.KNIFE);
+        IArmor liteArmor = traider.getArmor(ArmorType.LITEARMOR);
         Recruit recruit2 = new Recruit();
-        IArmor mediumArmor = traider.getArmor(Armor.MEDIUMARMOR);
+        IArmor mediumArmor = traider.getArmor(ArmorType.MEDIUMARMOR);
         Assassin assasin1 = new Assassin(knife1,liteArmor,recruit2,new BackStab());
         //System.out.println(assasin1.attack());
         //assasin1.useSkill();

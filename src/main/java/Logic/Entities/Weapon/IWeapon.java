@@ -1,4 +1,4 @@
-package Logic.Entities;
+package Logic.Entities.Weapon;
 
 public interface IWeapon {
     int getDamageValue();

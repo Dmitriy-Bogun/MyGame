@@ -1,7 +1,6 @@
-package Logic.Entities.Impl;
+package Logic.Entities.Skill;
 
-import Logic.Entities.Skill;
-import Logic.Entities.WarriorDecorator;
+import Logic.Entities.Character.*;
 
 public class Inviz extends Skill {
     public Inviz() {

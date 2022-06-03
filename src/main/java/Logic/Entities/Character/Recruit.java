@@ -1,6 +1,4 @@
-package Logic.Entities.Impl;
-
-import Logic.Entities.Warrior;
+package Logic.Entities.Character;
 
 public class Recruit extends Warrior {
     private static final int CLASS_MAX_HEALTH = 300;

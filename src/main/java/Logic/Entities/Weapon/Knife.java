@@ -1,6 +1,4 @@
-package Logic.Entities.Impl;
-
-import Logic.Entities.IWeapon;
+package Logic.Entities.Weapon;
 
 public class Knife implements IWeapon {
     @Override
