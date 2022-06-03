@@ -11,25 +11,39 @@ public class Main {
     public static void main(String[] args) {
 
         Traider traider = new Traider();
+
         IWeapon sword1 = traider.getWeapon(WeaponType.SWORD);
-        Recruit recruit1 = new Recruit();
-        //System.out.println(recruit1.attack());
-        //Paladin paladin = new Paladin(sword1,recruit1);
-        //System.out.println(paladin.attack());
-
-        System.out.println("=========================");
-
         IWeapon knife1 = traider.getWeapon(WeaponType.KNIFE);
+
         IArmor liteArmor = traider.getArmor(ArmorType.LITEARMOR);
-        Recruit recruit2 = new Recruit();
         IArmor mediumArmor = traider.getArmor(ArmorType.MEDIUMARMOR);
-        Assassin assasin1 = new Assassin(knife1,liteArmor,recruit2,new BackStab());
-        //System.out.println(assasin1.attack());
-        //assasin1.useSkill();
-        //Assassin assasin2 = new Assassin(sword1,mediumArmor,recruit1,new Inviz());
-        //assasin2.useSkill();
-        System.out.println(assasin1.dexterity());
 
+        Recruit recruit1 = new Recruit();
+        Recruit recruit2 = new Recruit();
 
+        Assassin assassin1 = new Assassin(knife1,liteArmor,recruit2,new BackStab());
+        Assassin assassin2 = new Assassin(sword1,mediumArmor,recruit1,new Inviz());
+
+//        int damage1 = assassin1.attack();
+//        System.out.println(damage1);
+//        assassin2.takingDamage(damage1);
+//        System.out.println(assassin2.currentHealth());
+//        if (assassin2.isAlive()){
+//            int damage2 = assassin2.attack();
+//            System.out.println(damage2);
+//            assassin1.takingDamage(damage2);
+//            System.out.println(assassin1.isAlive());
+//            System.out.println(assassin1.currentHealth());
+//        }
+//        else System.out.println("assassin2 dead");
+
+        System.out.println(assassin1.currentHealth());
+        System.out.println(assassin2.currentHealth());
+        System.out.println(assassin1.protection());
+        System.out.println(assassin2.protection());
+        assassin1.takingDamage(100);
+        assassin2.takingDamage(100);
+        System.out.println(assassin1.currentHealth());
+        System.out.println(assassin2.currentHealth());
     }
 }
