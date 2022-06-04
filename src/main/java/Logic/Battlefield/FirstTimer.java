@@ -8,8 +8,9 @@ public class FirstTimer implements Runnable {
     }
     Random random;
     @Override
-    public void run() {
-        int waiting = random.nextInt(3000);
+    public synchronized void run() {
+        int waiting = random.nextInt(200);
+        System.out.println(waiting);
         try {
             Thread.sleep(waiting);
         } catch (InterruptedException e) {
