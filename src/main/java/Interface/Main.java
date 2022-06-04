@@ -1,12 +1,16 @@
 package Interface;
 
 import Logic.Battlefield.BattleField;
+import Logic.Battlefield.WarriorTask;
 import Logic.Entities.Armor.*;
 import Logic.Entities.Weapon.*;
 import Logic.Entities.Character.Class.*;
 import Logic.Entities.Character.*;
 import Logic.Entities.*;
 import Logic.Entities.Skill.*;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,18 +30,16 @@ public class Main {
         Assassin assassin2 = new Assassin("Мужик справа",knife1,liteArmor,recruit1,new BackStab());
         //Assassin assassin2 = new Assassin("Мужик справа",sword1,mediumArmor,recruit1,new Inviz());
 
-        BattleField arena = new BattleField(assassin1,assassin2);
-        int firstWinner=0;
-        int secondWinner=0;
-        int battleCount = 100;
+        WarriorTask warrior1 = new WarriorTask(assassin1,assassin2);
+        WarriorTask warrior2 = new WarriorTask(assassin2,assassin1);
 
-        for (int i =0; i<battleCount; i++) {
-            Warrior winner = arena.stardBattle();
-            if (winner == assassin1) firstWinner++;
-            else secondWinner++;
-        }
-        System.out.println("Колличество боев: "+battleCount);
-        System.out.println("Победил "+assassin1+": "+firstWinner);
-        System.out.println("Победил "+assassin2+": "+secondWinner);
+        Timer timer = new Timer();
+        timer.schedule(warrior1, 0,10);
+        timer.schedule(warrior2,0,10);
+
+        do{
+
+        }while (assassin1.isAlive() && assassin2.isAlive());
+        System.out.println("конец");
     }
 }
