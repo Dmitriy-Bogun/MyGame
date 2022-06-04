@@ -79,7 +79,7 @@ public class Assassin extends WarriorDecorator {
     }
 
     @Override
-    public void takingDamage(int damage) {
+    public synchronized void takingDamage(int damage) {
 
         if (!chanceOfParrying()){
             int damaged = damage - (damage*this.protection()/100);
@@ -93,7 +93,7 @@ public class Assassin extends WarriorDecorator {
     }
 
     @Override
-    public boolean isAlive(){
+    public synchronized boolean isAlive(){
         return currentHealth>0;
     }
     @Override
