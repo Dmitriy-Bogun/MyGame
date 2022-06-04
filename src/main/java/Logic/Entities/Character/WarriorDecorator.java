@@ -10,12 +10,14 @@ public abstract class WarriorDecorator extends Warrior{
     protected IArmor armor;
     protected Warrior warrior;
     protected Skill skill;
+    protected String Name;
 
-    public WarriorDecorator(IWeapon weapon,IArmor armor, Warrior warrior, Skill skill) {
+    public WarriorDecorator(String Name, IWeapon weapon,IArmor armor, Warrior warrior, Skill skill) {
         this.weapon = weapon;
         this.armor = armor;
         this.warrior = warrior;
         this.skill = skill;
+        this.Name = Name;
     }
     public abstract void useSkill();
 }

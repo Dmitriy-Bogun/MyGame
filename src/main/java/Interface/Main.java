@@ -1,5 +1,6 @@
 package Interface;
 
+import Logic.Battlefield.BattleField;
 import Logic.Entities.Armor.*;
 import Logic.Entities.Weapon.*;
 import Logic.Entities.Character.Class.*;
@@ -21,29 +22,22 @@ public class Main {
         Recruit recruit1 = new Recruit();
         Recruit recruit2 = new Recruit();
 
-        Assassin assassin1 = new Assassin(knife1,liteArmor,recruit2,new BackStab());
-        Assassin assassin2 = new Assassin(sword1,mediumArmor,recruit1,new Inviz());
+        Assassin assassin1 = new Assassin("Мужик слева",knife1,liteArmor,recruit2,new BackStab());
+        Assassin assassin2 = new Assassin("Мужик справа",knife1,liteArmor,recruit1,new BackStab());
+        //Assassin assassin2 = new Assassin("Мужик справа",sword1,mediumArmor,recruit1,new Inviz());
 
-//        int damage1 = assassin1.attack();
-//        System.out.println(damage1);
-//        assassin2.takingDamage(damage1);
-//        System.out.println(assassin2.currentHealth());
-//        if (assassin2.isAlive()){
-//            int damage2 = assassin2.attack();
-//            System.out.println(damage2);
-//            assassin1.takingDamage(damage2);
-//            System.out.println(assassin1.isAlive());
-//            System.out.println(assassin1.currentHealth());
-//        }
-//        else System.out.println("assassin2 dead");
+        BattleField arena = new BattleField(assassin1,assassin2);
+        int firstWinner=0;
+        int secondWinner=0;
+        int battleCount = 100;
 
-        System.out.println(assassin1.currentHealth());
-        System.out.println(assassin2.currentHealth());
-        System.out.println(assassin1.protection());
-        System.out.println(assassin2.protection());
-        assassin1.takingDamage(100);
-        assassin2.takingDamage(100);
-        System.out.println(assassin1.currentHealth());
-        System.out.println(assassin2.currentHealth());
+        for (int i =0; i<battleCount; i++) {
+            Warrior winner = arena.stardBattle();
+            if (winner == assassin1) firstWinner++;
+            else secondWinner++;
+        }
+        System.out.println("Колличество боев: "+battleCount);
+        System.out.println("Победил "+assassin1+": "+firstWinner);
+        System.out.println("Победил "+assassin2+": "+secondWinner);
     }
 }

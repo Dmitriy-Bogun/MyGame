@@ -11,13 +11,13 @@ public class Assassin extends WarriorDecorator {
 
     private int currentHealth;
     Random random;
-    public Assassin(IWeapon weapon, IArmor armor, Warrior warrior, Skill skill) {
-        super(weapon, armor, warrior, skill);
+    public Assassin(String name, IWeapon weapon, IArmor armor, Warrior warrior, Skill skill) {
+        super(name,weapon, armor, warrior, skill);
         currentHealth = maxHealth();
         random = new Random();
     }
 
-    private static final int CLASS_ADDITIONAL_HEALTH = 300;
+    private static final int CLASS_ADDITIONAL_HEALTH = 3000;
     private static final int CLASS_ADDITIONAL_DEXTERITY = 10;
     private static final int CLASS_ADDITIONAL_STRENGTH = 5;
     private static final int CLASS_ADDITIONAL_PROTECTION = 10;
@@ -32,7 +32,12 @@ public class Assassin extends WarriorDecorator {
 
     @Override
     public int attack() {
-        return warrior.attack() + weapon.getDamageValue();
+        int damage;
+        if (chanceOfCriticalDamage()) damage = (warrior.attack() + weapon.getDamageValue())*2;
+        else damage = warrior.attack() + weapon.getDamageValue();
+        System.out.println(Name+" пытаюсь нанести урон "+damage);
+        return damage;
+
     }
 
     @Override
@@ -75,13 +80,25 @@ public class Assassin extends WarriorDecorator {
 
     @Override
     public void takingDamage(int damage) {
+
         if (!chanceOfParrying()){
-            this.currentHealth = this.currentHealth - (damage - (damage*this.protection()/100));
+            int damaged = damage - (damage*this.protection()/100);
+            System.out.println(Name+" мне въебали: "+ damaged);
+            this.currentHealth = this.currentHealth - damaged;
+            System.out.println(Name+" осталось жизней: "+ this.currentHealth);
+            if (!isAlive()) System.out.println(Name+" мне пизда!");
+            else System.out.println(Name +" породолжаю бой!");
         }
+        else System.out.println(Name+" Увернулся!");
     }
 
     @Override
     public boolean isAlive(){
         return currentHealth>0;
+    }
+    @Override
+    public String toString()
+    {
+        return this.Name;
     }
 }
