@@ -13,5 +13,5 @@ public abstract class Skill {
         this.name = name;
     }
 
-    public abstract void useSkill(WarriorDecorator warriorDecorator);
+    public abstract int useSkill(WarriorDecorator warriorDecorator,Warrior warrior);
 }

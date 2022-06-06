@@ -1,22 +1,28 @@
 package Logic.Entities.Weapon;
 
 public class Knife implements IWeapon {
+    private int ID;
+    private int damage;
+    private int dexterity;
+    private int cost;
+    private String name;
+
     @Override
     public int getDamageValue() {
-        return 3;
+        return damage;
     }
 
     @Override
     public int getCost() {
-        return 9;
+        return cost;
     }
 
     @Override
     public String getName() {
-        return "Knife";
+        return name;
     }
     @Override
     public int getDexterity() {
-        return 5;
+        return dexterity;
     }
 }

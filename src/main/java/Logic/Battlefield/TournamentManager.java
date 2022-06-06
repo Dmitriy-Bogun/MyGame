@@ -10,13 +10,15 @@ import java.util.Random;
 public class TournamentManager {
     private int numberOfParticipants;
     private Warrior warrior;
+    WarriorTask warriorTask;
     Random random;
-    private Map <Integer, Warrior> listOfFighters;
+    protected Map <Integer, Warrior> listOfFighters;
 
-    public TournamentManager(Map listOfFighters, int numberOfParticipants){
+    public TournamentManager(Map listOfFighters, int numberOfParticipants,WarriorTask warriorTask){
         this.listOfFighters = new HashMap<>();
         random = new Random();
         this.numberOfParticipants = numberOfParticipants;
+        this.warriorTask = warriorTask;
 
     }
 

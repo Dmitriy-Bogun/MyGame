@@ -8,12 +8,12 @@ public class Inviz extends Skill {
     }
 
     @Override
-    public void useSkill(WarriorDecorator warriorDecorator) {
+    public int useSkill(WarriorDecorator warriorDecorator,Warrior warrior) {
         if(warriorDecorator.weapon.getCost() > 10){
             System.out.println("not escape to invizible");
         }else {
             System.out.println("go to invize");
-        }
 
+        }return warrior.dexterity()*2;
     }
 }

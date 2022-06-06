@@ -1,28 +1,34 @@
 package Logic.Entities.Armor;
 
 public class LiteArmor implements IArmor {
+    private int ID;
+    private  String name;
+    private int dexterity;
+    private int health;
+    private int protection;
+    private int strength;
     @Override
     public int getProtection() {
-        return 15;
+        return protection;
     }
 
     @Override
     public int getDexterity() {
-        return 40;
+        return dexterity;
     }
 
     @Override
     public int getHealth() {
-        return 100;
+        return health;
     }
 
     @Override
     public int getStrength() {
-        return 3;
+        return strength;
     }
 
     @Override
     public String getName() {
-        return "Lite armor";
+        return name;
     }
 }

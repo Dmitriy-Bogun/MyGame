@@ -4,6 +4,7 @@ import Logic.Entities.Character.*;
 import Logic.Entities.Weapon.*;
 import Logic.Entities.Armor.*;
 import Logic.Entities.Skill.*;
+import Logic.Mechanics.Damage;
 
 import java.util.Random;
 
@@ -25,18 +26,18 @@ public class Assassin extends WarriorDecorator {
     @Override
     public void useSkill() {
         System.out.println(skill.getName());
-        skill.useSkill(this);
+        skill.useSkill(this,this);
            // return attack() * skill.getSkillDamage(weapon);
 
     }
 
     @Override
-    public int attack() {
+    public Damage attack() {
         int damage;
-        if (chanceOfCriticalDamage()) damage = (warrior.attack() + weapon.getDamageValue())*2;
-        else damage = warrior.attack() + weapon.getDamageValue();
+        if (chanceOfCriticalDamage()) damage = (warrior.attack().getFinalDamage() + weapon.getDamageValue())*2;
+        else damage = warrior.attack().getFinalDamage() + weapon.getDamageValue();
         System.out.println(Name+" пытаюсь нанести урон "+damage);
-        return damage;
+        return new Damage(damage);
 
     }
 
@@ -79,10 +80,10 @@ public class Assassin extends WarriorDecorator {
     }
 
     @Override
-    public synchronized void takingDamage(int damage) {
+    public synchronized void takingDamage(Damage damage) {
 
         if (!chanceOfParrying()){
-            int damaged = damage - (damage*this.protection()/100);
+            int damaged = damage.getFinalDamage() - (damage.getFinalDamage()*this.protection()/100);
             System.out.println(Name+" мне въебали: "+ damaged);
             this.currentHealth = this.currentHealth - damaged;
             System.out.println(Name+" осталось жизней: "+ this.currentHealth);

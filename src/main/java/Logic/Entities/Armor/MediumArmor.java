@@ -1,28 +1,34 @@
 package Logic.Entities.Armor;
 
 public class MediumArmor implements IArmor {
+    private int ID;
+    private  String name;
+    private int dexterity;
+    private int health;
+    private int protection;
+    private int strength;
     @Override
     public int getProtection() {
-        return 25;
+        return protection;
     }
 
     @Override
     public int getDexterity() {
-        return 30;
+        return dexterity;
     }
 
     @Override
     public int getHealth() {
-        return 200;
+        return health;
     }
 
     @Override
     public int getStrength() {
-        return 0;
+        return strength;
     }
 
     @Override
     public String getName() {
-        return "Medium armor";
+        return name;
     }
 }

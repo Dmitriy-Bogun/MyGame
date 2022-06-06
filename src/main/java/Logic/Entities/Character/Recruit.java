@@ -1,5 +1,7 @@
 package Logic.Entities.Character;
 
+import Logic.Mechanics.Damage;
+
 public class Recruit extends Warrior {
     private static final int CLASS_MAX_HEALTH = 300;
     private static final int CLASS_DEXTERITY = 10;
@@ -13,8 +15,8 @@ public class Recruit extends Warrior {
     }
 
     @Override
-    public int attack() {
-        return CLASS_DAMAGE;
+    public Damage attack() {
+        return new Damage(CLASS_DAMAGE);
     }
 
     @Override
@@ -31,7 +33,7 @@ public class Recruit extends Warrior {
     }
 
     @Override
-    public void takingDamage(int damage) {
+    public void takingDamage(Damage damage) {
 
     }
 

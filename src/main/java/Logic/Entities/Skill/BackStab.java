@@ -5,17 +5,16 @@ import Logic.Entities.Weapon.*;
 
 public class BackStab extends Skill {
 
-
     public BackStab() {
-        super("коварный удар");
+        super("BackStab");
     }
 
 
     @Override
-    public void useSkill(WarriorDecorator warriorDecorator) {
+    public int useSkill(WarriorDecorator warriorDecorator, Warrior warrior) {
         if (warriorDecorator.weapon instanceof Knife) {
-            System.out.println(warriorDecorator.attack()*3);
-        } else System.out.println("0");
-
+            return warriorDecorator.attack().getFinalDamage()*3;
+        } else
+            return 0;
     }
 }
