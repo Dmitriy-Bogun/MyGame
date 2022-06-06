@@ -41,5 +41,6 @@ public class Main {
 
         }while (assassin1.isAlive() && assassin2.isAlive());
         System.out.println("конец");
+        timer.cancel();
     }
 }
