@@ -16,7 +16,7 @@ public class TournamentManager {
     public TournamentManager(Map listOfFighters, int numberOfParticipants){
         this.listOfFighters = new HashMap<>();
         random = new Random();
-        this.numberOfParticipants = getNumberOfParticipants();
+        this.numberOfParticipants = numberOfParticipants;
 
     }
 
@@ -27,9 +27,4 @@ public class TournamentManager {
             return listOfFighters;
     }
 
-    public int getNumberOfParticipants() {
-        this.numberOfParticipants = random.nextInt(16 + 1);
-        if(numberOfParticipants % 2 != 0 ) numberOfParticipants = numberOfParticipants +1;
-        return numberOfParticipants;
-    }
 }
