@@ -10,7 +10,6 @@ public class Traider {
                 return new Sword();
             case KNIFE:
                 return new Knife();
-
         }
         return null;
     }

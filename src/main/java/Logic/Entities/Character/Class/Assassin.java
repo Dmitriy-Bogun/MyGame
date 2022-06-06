@@ -2,6 +2,7 @@ package Logic.Entities.Character.Class;
 
 import Logic.Entities.Character.*;
 import Logic.Entities.Weapon.*;
+import Logic.Mechanics.Damage;
 import Logic.Entities.Armor.*;
 import Logic.Entities.Skill.*;
 
@@ -11,8 +12,9 @@ public class Assassin extends WarriorDecorator {
 
     private int currentHealth;
     Random random;
+
     public Assassin(String name, IWeapon weapon, IArmor armor, Warrior warrior, Skill skill) {
-        super(name,weapon, armor, warrior, skill);
+        super(name, weapon, armor, warrior, skill);
         currentHealth = maxHealth();
         random = new Random();
     }
@@ -26,17 +28,19 @@ public class Assassin extends WarriorDecorator {
     public void useSkill() {
         System.out.println(skill.getName());
         skill.useSkill(this);
-           // return attack() * skill.getSkillDamage(weapon);
+        // return attack() * skill.getSkillDamage(weapon);
 
     }
 
     @Override
-    public int attack() {
+    public Damage attack() {
         int damage;
-        if (chanceOfCriticalDamage()) damage = (warrior.attack() + weapon.getDamageValue())*2;
-        else damage = warrior.attack() + weapon.getDamageValue();
-        System.out.println(Name+" пытаюсь нанести урон "+damage);
-        return damage;
+        if (chanceOfCriticalDamage())
+            damage = (warrior.attack().getFinalDamage() + weapon.getDamageValue()) * 2;
+        else
+            damage = warrior.attack().getFinalDamage() + weapon.getDamageValue();
+        System.out.println(Name + " пытаюсь нанести урон " + damage);
+        return new Damage(damage);
 
     }
 
@@ -65,40 +69,41 @@ public class Assassin extends WarriorDecorator {
         return warrior.strength() + armor.getStrength() + CLASS_ADDITIONAL_STRENGTH;
     }
 
-
-   private boolean chanceOfCriticalDamage() {
+    private boolean chanceOfCriticalDamage() {
         int temp = 100;
         int chance = random.nextInt(temp);
-       return chance <= this.dexterity();
-   }
+        return chance <= this.dexterity();
+    }
 
     private boolean chanceOfParrying() {
         int temp = 100;
         int chance = random.nextInt(temp);
-        return !(chance > (double)this.dexterity() / 2.0);
+        return !(chance > (double) this.dexterity() / 2.0);
     }
 
     @Override
-    public synchronized void takingDamage(int damage) {
+    public synchronized void takingDamage(Damage damage) {
 
-        if (!chanceOfParrying()){
-            int damaged = damage - (damage*this.protection()/100);
-            System.out.println(Name+" мне въебали: "+ damaged);
+        if (!chanceOfParrying()) {
+            int damaged = damage.getFinalDamage() - (damage.getFinalDamage() * this.protection() / 100);
+            System.out.println(Name + " мне въебали: " + damaged);
             this.currentHealth = this.currentHealth - damaged;
-            System.out.println(Name+" осталось жизней: "+ this.currentHealth);
-            if (!isAlive()) System.out.println(Name+" мне пизда!");
-            else System.out.println(Name +" породолжаю бой!");
-        }
-        else System.out.println(Name+" Увернулся!");
+            System.out.println(Name + " осталось жизней: " + this.currentHealth);
+            if (!isAlive())
+                System.out.println(Name + " мне пизда!");
+            else
+                System.out.println(Name + " породолжаю бой!");
+        } else
+            System.out.println(Name + " Увернулся!");
     }
 
     @Override
-    public synchronized boolean isAlive(){
-        return currentHealth>0;
+    public synchronized boolean isAlive() {
+        return currentHealth > 0;
     }
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         return this.Name;
     }
 }

@@ -10,7 +10,6 @@ import Logic.Entities.*;
 import Logic.Entities.Skill.*;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class Main {
     public static void main(String[] args) {
@@ -40,6 +39,6 @@ public class Main {
         do{
 
         }while (assassin1.isAlive() && assassin2.isAlive());
-        System.out.println("конец");
+        timer.cancel();
     }
 }
