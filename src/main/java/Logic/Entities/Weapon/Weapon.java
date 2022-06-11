@@ -1,11 +1,20 @@
 package Logic.Entities.Weapon;
 
-public class Sword implements IWeapon {
-    private int ID;
+public class Weapon implements IWeapon {
+
     private int damage;
     private int dexterity;
     private int cost;
     private String name;
+    private WeaponType weaponType;
+
+    public Weapon(int damage, int dexterity, int cost, String name, WeaponType weaponType) {
+        this.damage = damage;
+        this.dexterity = dexterity;
+        this.cost = cost;
+        this.name = name;
+        this.weaponType = weaponType;
+    }
 
     @Override
     public int getDamageValue() {
@@ -24,5 +33,10 @@ public class Sword implements IWeapon {
     @Override
     public int getDexterity() {
         return dexterity;
+    }
+
+    @Override
+    public WeaponType getWeaponType() {
+        return weaponType;
     }
 }

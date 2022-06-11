@@ -11,4 +11,6 @@ public interface IArmor {
     int getStrength();
 
     String getName();
+
+    ArmorType getArmorType();
 }

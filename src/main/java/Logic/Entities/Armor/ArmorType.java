@@ -1,7 +1,7 @@
 package Logic.Entities.Armor;
 
-public enum ArmorType {
-    HARDARMOR,
+public enum ArmorType {   
+    LITEARMOR,
     MEDIUMARMOR,
-    LITEARMOR
+    HARDARMOR
 }

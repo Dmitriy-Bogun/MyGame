@@ -9,4 +9,6 @@ public interface IWeapon {
     
     int getDexterity();
 
+    WeaponType getWeaponType();
+
 }

@@ -1,4 +1,4 @@
 package DALServicesDTO.WeaponDTO;
 
-public class WeaponsDTO {
+public class WeaponRepository {
 }

@@ -12,7 +12,7 @@ public class BackStab extends Skill {
 
     @Override
     public int useSkill(WarriorDecorator warriorDecorator, Warrior warrior) {
-        if (warriorDecorator.weapon instanceof Knife) {
+        if (warriorDecorator.weapon instanceof Weapon) {
             return warriorDecorator.attack().getFinalDamage()*3;
         } else
             return 0;

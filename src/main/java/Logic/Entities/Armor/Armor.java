@@ -1,30 +1,24 @@
 package Logic.Entities.Armor;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public class Armor implements IArmor {
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@Entity
-@Table(name = "name = lite_armor")
-
-public class LiteArmor implements IArmor {
-    @Id
-    @GeneratedValue(generator = "incrementor")
-    private int ID;
-    private  String name;
+    private String name;
     private int dexterity;
     private int health;
     private int protection;
     private int strength;
+    private ArmorType armorType;
+
+    public Armor(String name, int dexterity, int health, int protection, int strength, ArmorType armorType) {
+        this.name = name;
+        this.dexterity = dexterity;
+        this.health = health;
+        this. protection= protection;
+        this.strength = strength;
+        this.armorType = armorType;
+
+    }
+
     @Override
     public int getProtection() {
         return protection;
@@ -48,5 +42,10 @@ public class LiteArmor implements IArmor {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public ArmorType getArmorType() {   
+        return armorType;
     }
 }
