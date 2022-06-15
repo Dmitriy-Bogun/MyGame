@@ -19,21 +19,16 @@ public class ArmorDTO {
     private int protection;
     @Column(name = "strength")
     private int strength;
-    @Column(name = "armorType")
-    @OneToMany
-    private ArmorTypeDTO armorType;
 
     
 
-    public ArmorDTO(int iD, String name, int dexterity, int health, int protection, int strength,
-            ArmorTypeDTO armorType) {
+    public ArmorDTO(int iD, String name, int dexterity, int health, int protection, int strength) {
         ID = iD;
         this.name = name;
         this.dexterity = dexterity;
         this.health = health;
         this.protection = protection;
         this.strength = strength;
-        this.armorType = armorType;
     }
 
 
@@ -111,17 +106,5 @@ public class ArmorDTO {
 
     public void setStrength(int strength) {
         this.strength = strength;
-    }
-
-
-
-    public ArmorTypeDTO getArmorType() {
-        return armorType;
-    }
-
-
-
-    public void setArmorType(ArmorTypeDTO armorType) {
-        this.armorType = armorType;
     }
 }

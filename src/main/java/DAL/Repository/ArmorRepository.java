@@ -5,6 +5,8 @@ import DAL.DTO.ArmorTypeDTO;
 import Logic.Entities.Armor.ArmorType;
 import Logic.Entities.Armor.IArmor;
 import Logic.Entities.Traider;
+import Logic.Entities.Armor.*;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -15,30 +17,41 @@ import java.util.Random;
 
 public class ArmorRepository {
 
-    private ArmorDTO armorDTO;
-    private ArmorTypeDTO armorTypeDTO;
-    ArmorType armorType;
-    Random random;
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
     EntityManager requestManager = entityManagerFactory.createEntityManager();
+    private List<ArmorDTO> resultList;
+    private List<Armor> returnList;
 
-    public ArmorDTO requestArmor(){
-     requestManager.getTransaction().begin();
-        Query queryJoinTable = requestManager.createQuery("");
-        if (armorType == ArmorType.LITEARMOR){
-        Query queryLiteArmor = requestManager.createQuery("");
-            {
-                if (armorType == ArmorType.MEDIUMARMOR) {
-                    Query queryMediumArmor = requestManager.createQuery("");
-                    {
-                        if (armorType == ArmorType.HARDARMOR) {
-                            Query queryHardArmor = requestManager.createQuery("");
-                        }
-                    }
-                }
-            }
+    public List<Armor> requestLiteArmor() {
+
+        requestManager.getTransaction().begin();
+        resultList = requestManager.createQuery("SELECT c FROM Armor c WHERE protection < 10").getResultList();
+        requestManager.close();
+        List<ArmorDTO> list = resultList;
+        for (ArmorDTO armorDTO : list) {
+            returnList.add(new Armor(armorDTO.getName(),
+                    armorDTO.getDexterity(),
+                    armorDTO.getHealth(),
+                    armorDTO.getProtection(),
+                    armorDTO.getStrength(),
+                    ArmorType.LITEARMOR));
+        }
+        return returnList;
     }
-        Query queryId = requestManager.createQuery("SELECT id");
-        return armorDTO;
+
+    public List<Armor> requestMediumArmor() {
+        requestManager.getTransaction().begin();
+        resultList = requestManager.createQuery("SELECT c FROM Armor c WHERE protection > 10").getResultList();
+        requestManager.close();
+        List<ArmorDTO> list = resultList;
+        for (ArmorDTO armorDTO : list) {
+            returnList.add(new Armor(armorDTO.getName(),
+                    armorDTO.getDexterity(),
+                    armorDTO.getHealth(),
+                    armorDTO.getProtection(),
+                    armorDTO.getStrength(),
+                    ArmorType.MEDIUMARMOR));
+        }
+        return returnList;
     }
 }
