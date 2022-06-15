@@ -1,6 +1,4 @@
-package DALServicesDTO.ArmorTypeDTO;
-
-import DALServicesDTO.ArmorTypeDTO.ArmorTypeDTO;
+package DAL.DTO;
 import jakarta.persistence.*;
 
 @Entity

@@ -1,9 +1,14 @@
 package Logic.Entities;
 
+import DAL.DTO.ArmorDTO;
+import DAL.DTO.WeaponDTO;
 import Logic.Entities.Armor.*;
 import Logic.Entities.Weapon.*;
 
+import java.util.List;
+
 public class Traider {
+
     public IWeapon getWeapon(WeaponType type){
         //TODO: Add work with Weapon repository here
         // switch (type){

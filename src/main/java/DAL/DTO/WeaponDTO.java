@@ -1,12 +1,19 @@
-package DALServicesDTO.WeaponDTO;
+package DAL.DTO;
 
 import Logic.Entities.Weapon.WeaponType;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "name = weapon")
 public class WeaponDTO {
+    @Id
+    @GeneratedValue(generator = "incrementor")
+    @Column(name = "id")
     private int damage;
     private int dexterity;
     private int cost;
     private String name;
+    @Column(name = "weapon_type")
     private WeaponType weaponType;
 
     public WeaponDTO(int damage, int dexterity, int cost, String name, WeaponType weaponType) {
@@ -15,6 +22,9 @@ public class WeaponDTO {
         this.cost = cost;
         this.name = name;
         this.weaponType = weaponType;
+    }
+    public WeaponDTO(){
+
     }
 
 

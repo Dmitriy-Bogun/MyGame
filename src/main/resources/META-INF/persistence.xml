@@ -3,6 +3,9 @@
 
 
     <persistence-unit name="default">
+        <class>ArmorDTO</class>
+        <class>ArmorTypeDTO</class>
+        <class>WeaponDTO</class>
 
     <properties>
     <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
