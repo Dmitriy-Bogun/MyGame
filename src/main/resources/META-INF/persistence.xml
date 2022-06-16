@@ -4,7 +4,6 @@
 
     <persistence-unit name="default">
         <class>ArmorDTO</class>
-        <class>ArmorTypeDTO</class>
         <class>WeaponDTO</class>
 
     <properties>

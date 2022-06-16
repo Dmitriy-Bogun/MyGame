@@ -1,13 +1,17 @@
 package Logic.Entities;
 
-import DAL.DTO.ArmorDTO;
-import DAL.DTO.WeaponDTO;
+import DAL.Repository.ArmorRepository;
 import Logic.Entities.Armor.*;
 import Logic.Entities.Weapon.*;
 
 import java.util.List;
 
 public class Traider {
+    ArmorRepository armorRepository;
+
+    public Traider(){
+        this.armorRepository = new ArmorRepository();
+    }
 
     public IWeapon getWeapon(WeaponType type){
         //TODO: Add work with Weapon repository here
@@ -19,19 +23,20 @@ public class Traider {
 
         // }
         // return null;
+
         return new Weapon(5, 1, 2, "default", WeaponType.KNIFE);
     }
-    public IArmor getArmor(ArmorType type){
+    public List<Armor> getArmor(ArmorType type){
         //TODO: Add work with Armor repository here
-        // switch (type){
-        //     case HARDARMOR:
-        //         return new Armor();
-        //     case MEDIUMARMOR:
-        //         return new Armor();
-        //     case LITEARMOR:
-        //         return new Armor();
-        // }
-        return new Armor("default", 1, 1, 1, 1, ArmorType.LITEARMOR);
+         switch (type){
+             case HARDARMOR:
+                 return armorRepository.requestHardArmor();
+             case MEDIUMARMOR:
+                 return armorRepository.requestMediumArmor();
+             case LITEARMOR:
+                 return armorRepository.requestLiteArmor();
+         }
+        return null;
     }
 
 }
