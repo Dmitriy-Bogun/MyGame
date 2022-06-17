@@ -4,7 +4,7 @@ import Logic.Entities.Weapon.WeaponType;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "name = weapon")
+@Table(name = "weapon")
 public class WeaponDTO {
     @Id
     @GeneratedValue(generator = "incrementor")
@@ -13,19 +13,9 @@ public class WeaponDTO {
     private int dexterity;
     private int cost;
     private String name;
-    @Column(name = "weapon_type")
-    private WeaponType weaponType;
-
-    public WeaponDTO(int damage, int dexterity, int cost, String name, WeaponType weaponType) {
-        this.damage = damage;
-        this.dexterity = dexterity;
-        this.cost = cost;
-        this.name = name;
-        this.weaponType = weaponType;
-    }
-    public WeaponDTO(){
-
-    }
+    @OneToOne
+    @JoinColumn(name = "weaponType_id", referencedColumnName = "id")
+    private WeaponTypeDTO weaponType;
 
 
     public int getDamageValue() {
@@ -44,11 +34,6 @@ public class WeaponDTO {
 
     public int getDexterity() {
         return dexterity;
-    }
-
-
-    public WeaponType getWeaponType() {
-        return weaponType;
     }
 
 
@@ -72,7 +57,15 @@ public class WeaponDTO {
     }
 
 
-    public void setWeaponType(WeaponType weaponType) {
+    public int getDamage() {
+        return damage;
+    }
+
+    public WeaponTypeDTO getWeaponType() {
+        return weaponType;
+    }
+
+    public void setWeaponType(WeaponTypeDTO weaponType) {
         this.weaponType = weaponType;
     }
 }

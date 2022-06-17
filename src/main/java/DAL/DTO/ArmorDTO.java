@@ -2,109 +2,77 @@ package DAL.DTO;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "name = armor")
-
+@Table(name = "Armor")
 public class ArmorDTO {
     @Id
     @GeneratedValue(generator = "incrementor")
-    @Column(name = "id")
-    private int ID;
-    @Column(name = "name")
-    private  String name;
-    @Column(name = "dexterity")
+    private int id;
+    private String name;
     private int dexterity;
-    @Column(name = "health")
     private int health;
-    @Column(name = "protection")
     private int protection;
-    @Column(name = "strength")
     private int strength;
+    @OneToOne
+    @JoinColumn(name = "armorType_id", referencedColumnName = "id")
+    private ArmorTypeDTO armorTypeDTO;
 
-    
-
-    public ArmorDTO(int iD, String name, int dexterity, int health, int protection, int strength) {
-        ID = iD;
-        this.name = name;
-        this.dexterity = dexterity;
-        this.health = health;
-        this.protection = protection;
-        this.strength = strength;
+    public int getId() {
+        return id;
     }
 
-
-
-    public ArmorDTO() {
+    public void setId(int id) {
+        this.id = id;
     }
-
-
-
-    public int getID() {
-        return ID;
-    }
-
-
-
-    public void setID(int iD) {
-        ID = iD;
-    }
-
-
 
     public String getName() {
         return name;
     }
 
-
-
     public void setName(String name) {
         this.name = name;
     }
-
-
 
     public int getDexterity() {
         return dexterity;
     }
 
-
-
     public void setDexterity(int dexterity) {
         this.dexterity = dexterity;
     }
-
-
 
     public int getHealth() {
         return health;
     }
 
-
-
     public void setHealth(int health) {
         this.health = health;
     }
-
-
 
     public int getProtection() {
         return protection;
     }
 
-
-
     public void setProtection(int protection) {
         this.protection = protection;
     }
-
-
 
     public int getStrength() {
         return strength;
     }
 
-
-
     public void setStrength(int strength) {
         this.strength = strength;
     }
+
+    public ArmorTypeDTO getArmorTypeDTO() {
+        return armorTypeDTO;
+    }
+
+    public void setArmorTypeDTO(ArmorTypeDTO armorTypeDTO) {
+        this.armorTypeDTO = armorTypeDTO;
+    }
 }
+
+
+
+

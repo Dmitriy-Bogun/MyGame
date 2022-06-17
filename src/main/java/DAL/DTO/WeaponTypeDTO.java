@@ -1,20 +1,24 @@
 package DAL.DTO;
+
+import Logic.Entities.Weapon.Weapon;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
-@Table(name = "armorType")
-
-public class ArmorTypeDTO {
+@Table(name = "weaponType")
+public class WeaponTypeDTO {
 
     @Id
     @GeneratedValue(generator = "incrementor")
     private int id;
+
     private String name;
-@OneToMany
-@JoinColumn(name = "armorType_id", referencedColumnName = "id")
-    private List<ArmorDTO> armorList;
+
+    @OneToMany
+    @JoinColumn(name = "weaponType_id", referencedColumnName = "id")
+    private List<WeaponDTO> weaponList;
+
     public int getId() {
         return id;
     }
@@ -31,11 +35,11 @@ public class ArmorTypeDTO {
         this.name = name;
     }
 
-    public List<ArmorDTO> getArmorList() {
-        return armorList;
+    public List<WeaponDTO> getWeaponList() {
+        return weaponList;
     }
 
-    public void setArmorList(List<ArmorDTO> armorList) {
-        this.armorList = armorList;
+    public void setWeaponList(List<WeaponDTO> weaponList) {
+        this.weaponList = weaponList;
     }
 }
