@@ -2,8 +2,10 @@ package Logic.Entities.Skill;
 
 import Logic.Entities.Character.*;
 import Logic.Entities.Weapon.*;
+import Logic.Mechanics.Damage;
 
 public class BackStab extends Skill {
+    private Damage damage;
 
     public BackStab() {
         super("BackStab");
@@ -11,9 +13,9 @@ public class BackStab extends Skill {
 
 
     @Override
-    public int useSkill(WarriorDecorator warriorDecorator, Warrior warrior) {
+    public Damage useSkill(WarriorDecorator warriorDecorator, Warrior warrior) {
         if (warriorDecorator.weapon instanceof Weapon) {
-            return warriorDecorator.attack().getFinalDamage()*3;
+            return new Damage(warriorDecorator.warrior.getFinalDamage()*3);
         } else
             return 0;
     }

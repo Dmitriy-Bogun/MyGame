@@ -34,15 +34,7 @@ public class Assassin extends WarriorDecorator implements IStrategyOfFight {
 
     }
 
-//    @Override
-//    public Damage attack() {
-//        int damage;
-//        if (chanceOfCriticalDamage()) damage = (warrior.attack().getFinalDamage() + weapon.getDamageValue())*2;
-//        else damage = warrior.attack().getFinalDamage() + weapon.getDamageValue();
-//        System.out.println(Name+" пытаюсь нанести урон "+damage);
-//        return new Damage(damage);
-//
-//    }
+
 
     @Override
     public int protection() {
@@ -75,6 +67,11 @@ public class Assassin extends WarriorDecorator implements IStrategyOfFight {
         int chance = random.nextInt(temp);
        return chance <= this.dexterity();
    }
+    private boolean chanceToUseSkill() {
+        int temp = 100;
+        int chance = random.nextInt(temp);
+        return chance <= (double)this.dexterity()/2.0;
+    }
 
     private boolean chanceOfParrying() {
         int temp = 100;
@@ -105,9 +102,23 @@ public class Assassin extends WarriorDecorator implements IStrategyOfFight {
     {
         return this.Name;
     }
+    //    @Override
+//    public Damage attack() {
+//        int damage;
+//        if (chanceOfCriticalDamage()) damage = (warrior.attack().getFinalDamage() + weapon.getDamageValue())*2;
+//        else damage = warrior.attack().getFinalDamage() + weapon.getDamageValue();
+//        System.out.println(Name+" пытаюсь нанести урон "+damage);
+//        return new Damage(damage);
+//
+//    }
 
     @Override
     public Damage dealingDamage() {
+        int damage;
+        if (chanceOfCriticalDamage()){
+            damage = warrior.
+        }
+
         return new Damage(dealingDamage().getFinalDamage());
     }
 

@@ -1,6 +1,7 @@
 package Logic.Entities.Skill;
 
 import Logic.Entities.Character.*;
+import Logic.Mechanics.Damage;
 
 public class Inviz extends Skill {
     public Inviz() {
@@ -8,7 +9,7 @@ public class Inviz extends Skill {
     }
 
     @Override
-    public int useSkill(WarriorDecorator warriorDecorator,Warrior warrior) {
+    public Damage useSkill(WarriorDecorator warriorDecorator, Warrior warrior) {
         if(warriorDecorator.weapon.getCost() > 10){
             System.out.println("not escape to invizible");
         }else {
