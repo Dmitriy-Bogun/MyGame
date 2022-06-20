@@ -10,12 +10,12 @@ import Logic.Mechanics.IStrategyOfFight;
 import java.util.List;
 import java.util.Random;
 
-public class Assassin extends WarriorDecorator implements IStrategyOfFight {
+public class Assassin extends WarriorDecorator {
 
     private int currentHealth;
     Random random;
-    public Assassin(String name, IWeapon weapon, IArmor armor, Warrior warrior, Skill skill) {
-        super(name,weapon, armor, warrior, skill);
+    public Assassin(String name, IWeapon weapon, IArmor armor, Warrior warrior, Skill skill, IStrategyOfFight strategyOfFight) {
+        super(name,weapon, armor, warrior, skill, strategyOfFight);
         System.out.println(name + " мое снаряжение: "+ weapon.getName() + " и " + armor.getName());
         currentHealth = maxHealth();
         random = new Random();
@@ -79,19 +79,20 @@ public class Assassin extends WarriorDecorator implements IStrategyOfFight {
         return !(chance > (double)this.dexterity() / 2.0);
     }
 
-   // @Override
-    //public synchronized void takingDamage(Damage damage) {
-//
-//        if (!chanceOfParrying()){
-//            int damaged = damage.getFinalDamage() - (damage.getFinalDamage()*this.protection()/100);
-//            System.out.println(Name+" мне въебали: "+ damaged);
-//            this.currentHealth = this.currentHealth - damaged;
-//            System.out.println(Name+" осталось жизней: "+ this.currentHealth);
-//            if (!isAlive()) System.out.println(Name+" мне пизда!");
-//            else System.out.println(Name +" породолжаю бой!");
-//        }
-//        else System.out.println(Name+" Увернулся!");
-//    }
+   @Override
+    public synchronized Damage takingDamage(Damage damage) {
+
+    //    if (!chanceOfParrying()){
+    //        int damaged = damage.getFinalDamage() - (damage.getFinalDamage()*this.protection()/100);
+    //        System.out.println(Name+" мне въебали: "+ damaged);
+    //        this.currentHealth = this.currentHealth - damaged;
+    //        System.out.println(Name+" осталось жизней: "+ this.currentHealth);
+    //        if (!isAlive()) System.out.println(Name+" мне пизда!");
+    //        else System.out.println(Name +" породолжаю бой!");
+    //    }
+    //    else System.out.println(Name+" Увернулся!");
+    return strategyOfFight.takingDamage(damage);
+   }
 
     @Override
     public synchronized boolean isAlive(){
@@ -102,28 +103,15 @@ public class Assassin extends WarriorDecorator implements IStrategyOfFight {
     {
         return this.Name;
     }
-    //    @Override
-//    public Damage attack() {
-//        int damage;
-//        if (chanceOfCriticalDamage()) damage = (warrior.attack().getFinalDamage() + weapon.getDamageValue())*2;
-//        else damage = warrior.attack().getFinalDamage() + weapon.getDamageValue();
-//        System.out.println(Name+" пытаюсь нанести урон "+damage);
-//        return new Damage(damage);
-//
-//    }
+       @Override
+   public Damage dealingDamage() {
+    //    int damage;
+    //    if (chanceOfCriticalDamage()) damage = (warrior.attack().getFinalDamage() + weapon.getDamageValue())*2;
+    //    else damage = warrior.attack().getFinalDamage() + weapon.getDamageValue();
+    //    System.out.println(Name+" пытаюсь нанести урон "+damage);
+    //    return new Damage(damage);
+    return strategyOfFight.dealingDamage();
+   }
 
-    @Override
-    public Damage dealingDamage() {
-        int damage;
-        if (chanceOfCriticalDamage()){
-            damage = warrior.
-        }
-
-        return new Damage(dealingDamage().getFinalDamage());
-    }
-
-    @Override
-    public Damage takingDamage(Damage damage) {
-        return null;
-    }
+    
 }
