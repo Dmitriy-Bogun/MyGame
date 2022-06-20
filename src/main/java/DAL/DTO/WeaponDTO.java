@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class WeaponDTO {
     @Id
     @GeneratedValue(generator = "incrementor")
-    @Column(name = "id")
+    private int id;
     private int damage;
     private int dexterity;
     private int cost;
@@ -17,6 +17,13 @@ public class WeaponDTO {
     @JoinColumn(name = "weaponType_id", referencedColumnName = "id")
     private WeaponTypeDTO weaponType;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getDamageValue() {
         return damage;

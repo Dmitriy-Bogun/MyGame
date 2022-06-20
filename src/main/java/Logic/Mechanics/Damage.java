@@ -1,6 +1,14 @@
 package Logic.Mechanics;
 
-public class Damage {
+import Logic.Entities.Skill.Skill;
+
+import java.util.List;
+import java.util.Random;
+
+public class Damage  {
+    Random random;
+    Skill skill;
+    List <Skill> skillsList;
         private int damage;
 
         public Damage(int damage) {
@@ -11,5 +19,6 @@ public class Damage {
             return damage;
         }
 
-    }
+
+}
 

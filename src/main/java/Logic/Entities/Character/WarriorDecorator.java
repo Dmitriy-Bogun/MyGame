@@ -4,6 +4,8 @@ import Logic.Entities.Skill.*;
 import Logic.Entities.Armor.*;
 import Logic.Entities.Weapon.*;
 
+import java.util.List;
+
 public abstract class WarriorDecorator extends Warrior{
 
     public IWeapon weapon;
@@ -19,5 +21,5 @@ public abstract class WarriorDecorator extends Warrior{
         this.skill = skill;
         this.Name = Name;
     }
-    public abstract void useSkill();
+    public abstract void useSkill(List skillList );
 }
