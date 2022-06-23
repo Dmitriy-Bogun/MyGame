@@ -6,6 +6,7 @@ import Logic.Battlefield.WarriorTask;
 import Logic.Entities.Armor.Armor;
 import Logic.Entities.Armor.ArmorType;
 import Logic.Entities.Armor.IArmor;
+import Logic.Entities.BattleStrategies.ShadowAssassinStrategy;
 import Logic.Entities.Character.Class.Assassin;
 import Logic.Entities.Character.Recruit;
 import Logic.Entities.Skill.BackStab;
@@ -37,8 +38,8 @@ public class Main {
        Recruit recruit1 = new Recruit();
        Recruit recruit2 = new Recruit();
 //
-       Assassin assassin1 = new Assassin("Мужик слева", traider.getWeapon(WeaponType.SWORD), traider.getArmor(ArmorType.LITEARMOR), recruit2,new BackStab());
-       Assassin assassin2 = new Assassin("Мужик справа", traider.getWeapon(WeaponType.KNIFE), traider.getArmor(ArmorType.HARDARMOR), recruit1,new BackStab());
+       Assassin assassin1 = new Assassin("Мужик слева", traider.getWeapon(WeaponType.SWORD), traider.getArmor(ArmorType.LITEARMOR), recruit2, new ShadowAssassinStrategy());
+       Assassin assassin2 = new Assassin("Мужик справа", traider.getWeapon(WeaponType.KNIFE), traider.getArmor(ArmorType.HARDARMOR), recruit1, new ShadowAssassinStrategy());
         System.out.println(assassin1.dexterity() + " " + assassin1.protection() + " " + assassin1.currentHealth());
         System.out.println(assassin2.dexterity() + " " + assassin2.protection() + " " + assassin2.currentHealth());
         WarriorTask warrior1 = new WarriorTask(assassin1,assassin2);

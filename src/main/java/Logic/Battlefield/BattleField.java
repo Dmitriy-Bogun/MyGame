@@ -34,11 +34,11 @@ public class BattleField {
         //return firstWarrior.isAlive()? firstWarrior : secondWarrior;
    // }
     private void atackFirst(){
-        secondWarrior.takingDamage(firstWarrior.attack());
+       // secondWarrior.takingDamage(firstWarrior.attack());
 
     }
     private void atackSecond(){
-        firstWarrior.takingDamage(secondWarrior.attack());
+        //firstWarrior.takingDamage(secondWarrior.attack());
 
     }
 }

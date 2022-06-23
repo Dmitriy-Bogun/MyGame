@@ -3,19 +3,17 @@ package Logic.Entities.Character.Class;
 import Logic.Entities.Character.*;
 import Logic.Entities.Weapon.*;
 import Logic.Entities.Armor.*;
-import Logic.Entities.Skill.*;
 import Logic.Mechanics.Damage;
 import Logic.Mechanics.IStrategyOfFight;
 
-import java.util.List;
 import java.util.Random;
 
 public class Assassin extends WarriorDecorator {
 
     private int currentHealth;
     Random random;
-    public Assassin(String name, IWeapon weapon, IArmor armor, Warrior warrior, Skill skill, IStrategyOfFight strategyOfFight) {
-        super(name,weapon, armor, warrior, skill, strategyOfFight);
+    public Assassin(String name, IWeapon weapon, IArmor armor, Warrior warrior, IStrategyOfFight strategyOfFight) {
+        super(name,weapon, armor, warrior, strategyOfFight);
         System.out.println(name + " мое снаряжение: "+ weapon.getName() + " и " + armor.getName());
         currentHealth = maxHealth();
         random = new Random();
@@ -25,14 +23,7 @@ public class Assassin extends WarriorDecorator {
     private static final int CLASS_ADDITIONAL_DEXTERITY = 10;
     private static final int CLASS_ADDITIONAL_STRENGTH = 5;
     private static final int CLASS_ADDITIONAL_PROTECTION = 10;
-
-    @Override
-    public void useSkill(List skillsList) {
-        System.out.println(skill.getName());
-        skill.useSkill(this,this);
-           // return attack() * skill.getSkillDamage(weapon);
-
-    }
+    private static final int CLASS_ADDITION_DAMAGE = 10;
 
 
 
@@ -60,58 +51,51 @@ public class Assassin extends WarriorDecorator {
     public int strength() {
         return warrior.strength() + armor.getStrength() + CLASS_ADDITIONAL_STRENGTH;
     }
-
-
-   private boolean chanceOfCriticalDamage() {
-        int temp = 100;
-        int chance = random.nextInt(temp);
-       return chance <= this.dexterity();
-   }
-    private boolean chanceToUseSkill() {
-        int temp = 100;
-        int chance = random.nextInt(temp);
-        return chance <= (double)this.dexterity()/2.0;
-    }
-
-    private boolean chanceOfParrying() {
-        int temp = 100;
-        int chance = random.nextInt(temp);
-        return !(chance > (double)this.dexterity() / 2.0);
-    }
-
-   @Override
-    public synchronized Damage takingDamage(Damage damage) {
-
-    //    if (!chanceOfParrying()){
-    //        int damaged = damage.getFinalDamage() - (damage.getFinalDamage()*this.protection()/100);
-    //        System.out.println(Name+" мне въебали: "+ damaged);
-    //        this.currentHealth = this.currentHealth - damaged;
-    //        System.out.println(Name+" осталось жизней: "+ this.currentHealth);
-    //        if (!isAlive()) System.out.println(Name+" мне пизда!");
-    //        else System.out.println(Name +" породолжаю бой!");
-    //    }
-    //    else System.out.println(Name+" Увернулся!");
-    return strategyOfFight.takingDamage(damage);
-   }
-
     @Override
     public synchronized boolean isAlive(){
         return currentHealth>0;
     }
+
+    @Override
+    public int baseDamage() {
+        return warrior.baseDamage()+CLASS_ADDITION_DAMAGE;
+    }
+
     @Override
     public String toString()
     {
         return this.Name;
     }
-       @Override
-   public Damage dealingDamage() {
-    //    int damage;
-    //    if (chanceOfCriticalDamage()) damage = (warrior.attack().getFinalDamage() + weapon.getDamageValue())*2;
-    //    else damage = warrior.attack().getFinalDamage() + weapon.getDamageValue();
-    //    System.out.println(Name+" пытаюсь нанести урон "+damage);
-    //    return new Damage(damage);
-    return strategyOfFight.dealingDamage();
-   }
 
-    
+    @Override
+    public Damage dealingDamage() {
+        Damage dealingDamage = strategyOfFight.dealingDamage(this);
+        System.out.println(this + " пытаюсь нанести урон: " + dealingDamage.getDamage());
+        return dealingDamage;
+    }
+
+   @Override
+    public synchronized Damage takingDamage(Damage damage) {
+    Damage takenDamage = strategyOfFight.takingDamage(damage,this);
+
+    if (takenDamage.getDamage() == 0)
+        System.out.println(this+" Увернулся!");
+
+    else{
+        if (dealingDamage().isCritical())
+            System.out.println(this +" мне въебали крит!!!: "+ takenDamage.getDamage());
+        else
+            System.out.println(this +" мне въебали: "+ takenDamage.getDamage());
+
+        this.currentHealth = this.currentHealth() - takenDamage.getDamage();
+        System.out.println(this +" осталось жизней: "+ this.currentHealth);
+
+        if (!isAlive())
+            System.out.println(this+" мне пизда!");
+        else
+            System.out.println(this +" породолжаю бой!");
+    }
+
+    return takenDamage;
+   }
 }

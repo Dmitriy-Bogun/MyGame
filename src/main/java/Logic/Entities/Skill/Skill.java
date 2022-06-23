@@ -2,6 +2,7 @@ package Logic.Entities.Skill;
 
 import Logic.Entities.Character.*;
 import Logic.Mechanics.Damage;
+import Logic.Mechanics.SkillResult;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public abstract class Skill {
         this.name = name;
     }
 
-    public abstract int useSkill(WarriorDecorator warriorDecorator, Warrior warrior);
+    public abstract SkillResult useSkill(WarriorDecorator warriorDecorator);
 }

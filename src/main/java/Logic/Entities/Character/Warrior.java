@@ -9,6 +9,7 @@ public abstract class Warrior {
     public abstract int currentHealth();
     public abstract int protection();
     public abstract boolean isAlive();
+    public abstract int baseDamage();
     public abstract Damage takingDamage(Damage damage);
     public abstract Damage dealingDamage();
 }

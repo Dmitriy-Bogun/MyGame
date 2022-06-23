@@ -1,9 +1,8 @@
 package Logic.Entities.Character;
 
 import Logic.Mechanics.Damage;
-import Logic.Mechanics.IStrategyOfFight;
 
-public class Recruit extends Warrior implements IStrategyOfFight {
+public class Recruit extends Warrior {
     private static final int CLASS_MAX_HEALTH = 300;
     private static final int CLASS_DEXTERITY = 10;
     private static final int CLASS_STRENGTH = 5;
@@ -17,12 +16,13 @@ public class Recruit extends Warrior implements IStrategyOfFight {
 
     @Override
     public Damage dealingDamage() {
-        return new Damage(CLASS_DAMAGE);
+        return new Damage(CLASS_DAMAGE,false);
     }
 
+    //TODO: Change strategy of Recruit
     @Override
     public Damage takingDamage(Damage damage) {
-        return new Damage(damage.getFinalDamage());
+        return new Damage(damage.getDamage(),false);
     }
 
     @Override
@@ -37,7 +37,6 @@ public class Recruit extends Warrior implements IStrategyOfFight {
     public double chanceOfParrying() {
         return CLASS_DEXTERITY/2.0;
     }
-
 
 
     @Override
@@ -62,5 +61,10 @@ public class Recruit extends Warrior implements IStrategyOfFight {
 
     public boolean isAlive(){
         return this.currentHealth>0;
+    }
+
+    @Override
+    public int baseDamage() {
+        return CLASS_DAMAGE;
     }
 }

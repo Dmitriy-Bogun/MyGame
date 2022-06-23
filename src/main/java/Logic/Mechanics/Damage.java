@@ -1,21 +1,20 @@
 package Logic.Mechanics;
 
-import Logic.Entities.Skill.Skill;
-
-import java.util.List;
-import java.util.Random;
-
 public class Damage  {
-    Random random;
-    Skill skill;
-    List <Skill> skillsList;
-        private int damage;
 
-        public Damage(int damage) {
+        private int damage;
+        private boolean critical;
+
+    public boolean isCritical() {
+        return critical;
+    }
+
+    public Damage(int damage, boolean critical) {
             this.damage = damage;
+            this.critical = critical;
         }
 
-        public int getFinalDamage(){
+        public int getDamage(){
             return damage;
         }
 

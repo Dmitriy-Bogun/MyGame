@@ -23,9 +23,9 @@ public class WarriorTask extends TimerTask {
             try{
                 Thread.sleep(random.nextInt((10) + 10));
                 if(firstWarrior.isAlive() && secondWarrior.isAlive()){
-                    secondWarrior.takingDamage(firstWarrior.attack());
+                    secondWarrior.takingDamage(firstWarrior.dealingDamage());
 
-                    System.out.println("jhgfjh");
+                   // System.out.println("jhgfjh");
                 }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
