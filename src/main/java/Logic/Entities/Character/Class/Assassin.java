@@ -19,7 +19,7 @@ public class Assassin extends WarriorDecorator {
         random = new Random();
     }
 
-    private static final int CLASS_ADDITIONAL_HEALTH = 3000;
+    private static final int CLASS_ADDITIONAL_HEALTH = 300;
     private static final int CLASS_ADDITIONAL_DEXTERITY = 10;
     private static final int CLASS_ADDITIONAL_STRENGTH = 5;
     private static final int CLASS_ADDITIONAL_PROTECTION = 10;
@@ -68,7 +68,7 @@ public class Assassin extends WarriorDecorator {
     }
 
     @Override
-    public Damage dealingDamage() {
+    public synchronized Damage dealingDamage() {
         Damage dealingDamage = strategyOfFight.dealingDamage(this);
         System.out.println(this + " пытаюсь нанести урон: " + dealingDamage.getDamage());
         return dealingDamage;

@@ -16,8 +16,7 @@ public class BackStab extends Skill {
     @Override
     public SkillResult useSkill(WarriorDecorator warriorDecorator) {
         if (warriorDecorator.weapon.getWeaponType() == WeaponType.KNIFE) {
-            return new SkillResult(0,warriorDecorator.baseDamage()*3);
-        } else
-            return new SkillResult(0,0);
+        }
+        return new SkillResult(0, warriorDecorator.baseDamage() * 3,false);
     }
 }

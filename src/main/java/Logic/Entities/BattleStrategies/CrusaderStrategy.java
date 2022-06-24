@@ -2,7 +2,6 @@ package Logic.Entities.BattleStrategies;
 
 import Logic.Entities.Character.WarriorDecorator;
 import Logic.Entities.Skill.BackStab;
-import Logic.Entities.Skill.Inviz;
 import Logic.Entities.Skill.Skill;
 import Logic.Entities.Weapon.WeaponType;
 import Logic.Mechanics.Damage;
@@ -10,24 +9,22 @@ import Logic.Mechanics.IStrategyOfFight;
 
 import java.util.Random;
 
-public class ShadowAssassinStrategy implements IStrategyOfFight {
+public class CrusaderStrategy implements IStrategyOfFight {
 
     private Random random;
     private Skill backstub;
-    private Skill inviz;
-    public ShadowAssassinStrategy() {
+    public CrusaderStrategy() {
         random = new Random();
         backstub = new BackStab();
-        inviz = new Inviz();
     }
 
     @Override
-    public  Damage dealingDamage(WarriorDecorator warrior) {
+    public Damage dealingDamage(WarriorDecorator warrior) {
 
         Damage dealDamage;
 
         //TODO: change sword backstub mechanics. Димон заебашь чтоб при мече скил не вызывался! А вызывался чтобы только при  кинжале
-        if (chanceToUseSkill(warrior.dexterity()) && warrior.weapon.getWeaponType() == WeaponType.KNIFE )
+        if (chanceToUseSkill(warrior.dexterity()) && warrior.weapon.getWeaponType() == WeaponType.KNIFE)
         {
             System.out.println(warrior + " Использую скилл "+backstub.getName());
             dealDamage = new Damage(backstub.useSkill(warrior).getChangeMainDamage(),true);
@@ -43,10 +40,6 @@ public class ShadowAssassinStrategy implements IStrategyOfFight {
     public synchronized Damage takingDamage(Damage damage, WarriorDecorator warrior) {
 
         Damage takenDamage;
-        if(chanceToUseSkill(warrior.dexterity()) && (warrior.weapon.getWeaponType() == WeaponType.KNIFE || warrior.weapon.getWeaponType() == WeaponType.SWORD )){
-            System.out.println(warrior + " Использую скилл "+inviz.getName());
-            takenDamage = new Damage(0, false);
-        }
         if (!chanceOfParrying(warrior.dexterity())){
             takenDamage = new Damage(damage.getDamage() - (damage.getDamage()*warrior.protection()/100),damage.isCritical());
         }
@@ -56,14 +49,14 @@ public class ShadowAssassinStrategy implements IStrategyOfFight {
         return takenDamage;
     }
 
-       private boolean chanceOfCriticalDamage(int dexterity) {
+    private boolean chanceOfCriticalDamage(int dexterity) {
         int temp = 100;
         int chance = random.nextInt(temp);
-       return chance <= dexterity;
-   }
+        return chance <= (dexterity - 5);
+    }
 
     private boolean chanceToUseSkill(int dexterity) {
-        int temp = 100;
+        int temp = 80;
         int chance = random.nextInt(temp);
         return chance <= (double)dexterity/2.0;
     }
@@ -71,6 +64,7 @@ public class ShadowAssassinStrategy implements IStrategyOfFight {
     private boolean chanceOfParrying(int dexterity) {
         int temp = 100;
         int chance = random.nextInt(temp);
-        return !(chance > (double)dexterity / 2.0);
+        return !(chance > (double)dexterity / 2.2);
     }
+
 }
