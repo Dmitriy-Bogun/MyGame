@@ -2,6 +2,8 @@ package Logic.Entities.BattleStrategies;
 
 import Logic.Entities.Character.WarriorDecorator;
 import Logic.Entities.Skill.BackStab;
+import Logic.Entities.Skill.DeathBlow;
+import Logic.Entities.Skill.Inviz;
 import Logic.Entities.Skill.Skill;
 import Logic.Entities.Weapon.WeaponType;
 import Logic.Mechanics.Damage;
@@ -12,10 +14,12 @@ import java.util.Random;
 public class RobberStrategy implements IStrategyOfFight {
 
     private Random random;
-    private Skill backstub;
+    private Skill deathBlow;
+    private Skill inviz;
     public RobberStrategy() {
         random = new Random();
-        backstub = new BackStab();
+        deathBlow = new DeathBlow();
+        inviz = new Inviz();
     }
 
     @Override
@@ -24,10 +28,10 @@ public class RobberStrategy implements IStrategyOfFight {
         Damage dealDamage;
 
         //TODO: change sword backstub mechanics. Димон заебашь чтоб при мече скил не вызывался! А вызывался чтобы только при  кинжале
-        if (chanceToUseSkill(warrior.dexterity()) && warrior.weapon.getWeaponType() == WeaponType.KNIFE)
+        if (chanceToUseSkill(warrior.dexterity()) && (warrior.weapon.getWeaponType() == WeaponType.KNIFE ||warrior.weapon.getWeaponType() == WeaponType.SWORD))
         {
-            System.out.println(warrior + " Использую скилл "+backstub.getName());
-            dealDamage = new Damage(backstub.useSkill(warrior).getChangeMainDamage(),true);
+            System.out.println(warrior + " Использую скилл "+deathBlow.getName());
+            dealDamage = new Damage(deathBlow.useSkill(warrior).getChangeMainDamage(),true);
         }
         else if (chanceOfCriticalDamage(warrior.dexterity())){
             dealDamage = new Damage((warrior.baseDamage() + warrior.weapon.getDamageValue())*2,true);
@@ -40,6 +44,10 @@ public class RobberStrategy implements IStrategyOfFight {
     public synchronized Damage takingDamage(Damage damage, WarriorDecorator warrior) {
 
         Damage takenDamage;
+        if(chanceToUseSkill(warrior.dexterity()) && (warrior.weapon.getWeaponType() == WeaponType.KNIFE ||warrior.weapon.getWeaponType() == WeaponType.SWORD)){
+            System.out.println(warrior + " Использую скилл "+inviz.getName());
+            takenDamage = new Damage(0, false);
+        }
         if (!chanceOfParrying(warrior.dexterity())){
             takenDamage = new Damage(damage.getDamage() - (damage.getDamage()*warrior.protection()/100),damage.isCritical());
         }

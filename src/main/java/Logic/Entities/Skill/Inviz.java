@@ -12,7 +12,8 @@ public class Inviz extends Skill {
 
     @Override
     public SkillResult useSkill(WarriorDecorator warriorDecorator) {
-        if(warriorDecorator.weapon.getWeaponType() == WeaponType.KNIFE || warriorDecorator.weapon.getWeaponType() == WeaponType.SWORD);
+        if(warriorDecorator.weapon.getWeaponType() == WeaponType.KNIFE || warriorDecorator.weapon.getWeaponType() == WeaponType.SWORD){
+        }
      return new SkillResult(0,0,true);
     }
 }

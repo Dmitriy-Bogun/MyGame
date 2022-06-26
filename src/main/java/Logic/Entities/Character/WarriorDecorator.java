@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class WarriorDecorator extends Warrior{
 
     public IWeapon weapon;
-    protected IArmor armor;
+    public IArmor armor;
     protected Warrior warrior;
     protected Skill skill;
     protected String Name;
