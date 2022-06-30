@@ -26,6 +26,5 @@ public class Traider {
         List<Armor> armors = armorRepository.requestArmor(type);
         return armors.get(random.nextInt(armors.size()));
     }
-    //public static void showUniform(){
 
 }

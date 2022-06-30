@@ -84,17 +84,17 @@ public class Paladin extends WarriorDecorator {
 
         else {
             if (dealingDamage().isCritical())
-                System.out.println(this + " мне въебали крит!!!: " + takenDamage.getDamage());
+                System.out.println(this + " по мне прошел крит!!!: " + takenDamage.getDamage());
             else
-                System.out.println(this + " мне въебали: " + takenDamage.getDamage());
+                System.out.println(this + " мне нанесли урон: " + takenDamage.getDamage());
 
             this.currentHealth = this.currentHealth() - takenDamage.getDamage();
             System.out.println(this + " осталось жизней: " + this.currentHealth);
 
             if (!isAlive())
-                System.out.println(this + " мне пизда!");
+                System.out.println(this + " я проиграл");
             else
-                System.out.println(this + " породолжаю бой!");
+                System.out.println(this + " ==================================");
         }
 
         return takenDamage;

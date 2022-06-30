@@ -26,7 +26,6 @@ public class ShadowAssassinStrategy implements IStrategyOfFight {
 
         Damage dealDamage;
 
-        //TODO: change sword backstub mechanics. Димон заебашь чтоб при мече скил не вызывался! А вызывался чтобы только при  кинжале
         if (chanceToUseSkill(warrior.dexterity()) && warrior.weapon.getWeaponType() == WeaponType.KNIFE )
         {
             System.out.println(warrior + " Использую скилл "+backstub.getName());

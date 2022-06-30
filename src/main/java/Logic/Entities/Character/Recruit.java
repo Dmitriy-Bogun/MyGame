@@ -19,7 +19,7 @@ public class Recruit extends Warrior {
         return new Damage(CLASS_DAMAGE,false);
     }
 
-    //TODO: Change strategy of Recruit
+
     @Override
     public Damage takingDamage(Damage damage) {
         return new Damage(damage.getDamage(),false);

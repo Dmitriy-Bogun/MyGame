@@ -7,7 +7,6 @@ import Logic.Mechanics.SkillResult;
 import java.util.List;
 
 public abstract class Skill {
-    List<Skill> skillList;
     private String name;
 
     public String getName() {

@@ -25,19 +25,8 @@ import java.util.Timer;
 
 public class Main {
     public static void main(String[] args) {
-
         Traider traider = new Traider(new ArmorRepository(), new WeaponRepository());
-//        System.out.println(traider.getArmor(ArmorType.LITEARMOR).getName());
-//           System.out.println(traider.getWeapon(WeaponType.SWORD).getName());
-
-
-//        context.getTransaction().begin();
-//        context.persist(t1);
-//               context.getTransaction().commit();
 //
-//        IWeapon knife1 = traider.getWeapon(WeaponType.KNIFE);
-//        IArmor liteArmor = traider.getArmor(ArmorType.LITEARMOR);
-
        Recruit recruit1 = new Recruit();
        Recruit recruit2 = new Recruit();
 //

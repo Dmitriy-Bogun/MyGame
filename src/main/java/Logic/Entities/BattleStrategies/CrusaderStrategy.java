@@ -28,7 +28,6 @@ public class CrusaderStrategy implements IStrategyOfFight {
 
         Damage dealDamage;
 
-        //TODO: change sword backstub mechanics. Димон заебашь чтоб при мече скил не вызывался! А вызывался чтобы только при  кинжале
         if (chanceToUseSkill(warrior.dexterity()) && ((warrior.weapon.getWeaponType() == WeaponType.SWORD || warrior.weapon.getWeaponType() == WeaponType.KNIFE) && warrior.armor.getArmorType() == ArmorType.MEDIUMARMOR))
         {
             System.out.println(warrior + " Использую скилл "+swordOfJustice.getName());
